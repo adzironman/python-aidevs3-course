@@ -1,0 +1,48 @@
+# Virtual environment directories
+venv/
+env/
+myenv/
+*/venv/
+*/env/
+*/myenv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE-specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# pip-generated files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# pyinstaller generated files
+# This may include sensitive data or compiled executable files
+/*.spec
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Compiled C libraries
+*.so
+
+# Environment variable files
+.env
+.env.*
+.venv
+env/
+ENV/
+env.bak/
+venv.bak/
