@@ -1,5 +1,5 @@
 from src.tasks.base_task import BaseTask
-from src.clients.ai_devs_client import PoligonAPIClient
+from src.clients.poligon_api_client import PoligonAPIClient
 
 class PoligonTask(BaseTask):
     def _create_client(self) -> PoligonAPIClient:
