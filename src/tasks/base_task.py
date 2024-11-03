@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.clients.ai_devs_client import PoligonAPIClient
+from src.clients.poligon_api_client import PoligonAPIClient
 from typing import Any
 
 class BaseTask(ABC):
