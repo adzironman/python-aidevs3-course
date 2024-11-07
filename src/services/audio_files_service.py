@@ -1,4 +1,4 @@
-from clients.openai_client import OpenAIClient
+from src.clients.openai_client import OpenAIClient
 import os
 from pydub import AudioSegment
 from typing import List

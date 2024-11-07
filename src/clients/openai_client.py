@@ -24,3 +24,23 @@ class OpenAIClient:
                 transcriptions.append(transcript)
         
         return " ".join(transcriptions)
+    
+    def answer_captcha_question(self, question: str) -> str:
+        response = self.client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "Respond to question. Respond with only a number, nothing else."},
+                {"role": "user", "content": question}
+            ]
+        )
+        return response.choices[0].message.content
+    
+    def answer_question(self, question: str, model: str = "gpt-4o-mini", system_message: str = "Respond only if you know the answer. Otherwise, say 'I don't know'.") -> str:
+        response = self.client.chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": question}
+            ]
+        )
+        return response.choices[0].message.content
