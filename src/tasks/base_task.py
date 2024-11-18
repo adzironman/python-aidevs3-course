@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
+import logging
+from venv import logger
 from src.clients.poligon_api_client import PoligonAPIClient
 from typing import Any
+
+logging.basicConfig(level=logging.INFO)  # Set the logging level to INFO
+logger = logging.getLogger(__name__) 
 
 class BaseTask(ABC):
     def __init__(self):
@@ -12,11 +17,18 @@ class BaseTask(ABC):
         pass
 
     @abstractmethod
-    def process(self, data: Any) -> Any:
+    def process(self, data: Any = None) -> Any:
         """Process task-specific data"""
         pass
 
+    @abstractmethod
+    def fetch_data(self) -> Any:
+        """Fetch task-specific data"""
+        pass
+
     def run(self):
-        data = self.client.fetch_data()
+        data = self.fetch_data()
+        logger.info(f"Fetched data: {data}")
         result = self.process(data)
+        logger.info(f"Sending answer: {result}")
         return self.client.send_answer(result) 

@@ -9,7 +9,10 @@ class PoligonAPIClient:
         self.api_key = os.getenv("POLIGON_API_KEY")
         self.task_name = task_name
         self.data_url = data_url
-        self.verify_url = "https://poligon.aidevs.pl/verify"
+        # self.verify_url = "https://poligon.aidevs.pl/verify"
+        self.verify_url = "https://centrala.ag3nts.org/report"
+
+
 
     def fetch_data(self):
         """Fetches data from the data URL."""
