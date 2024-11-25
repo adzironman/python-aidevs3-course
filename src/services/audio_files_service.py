@@ -20,7 +20,7 @@ def chunk_audio(file_path: str, chunk_duration: int = 60) -> List[str]:
     return audio_chunks
 
 
-def process_audio_transcription(audio_file_path: str, chunk_duration: int = 200) -> None:
+def process_audio_transcription(audio_file_path: str, chunk_duration: int = 200, output_file_name: str = "transcription_result.txt") -> str:
     transcription_client = OpenAIClient()
     
     # Step 1: Chunk the audio file
@@ -34,6 +34,13 @@ def process_audio_transcription(audio_file_path: str, chunk_duration: int = 200)
     os.makedirs(output_directory, exist_ok=True)  # Create the directory if it doesn't exist
 
     # Specify the output file path
-    output_file_path = os.path.join(output_directory, "transcription_result.txt")  # Create the file path
+    output_file_path = os.path.join(output_directory, output_file_name)  # Create the file path
     with open(output_file_path, 'w') as output_file:  # Open the file in write mode
         output_file.write(transcription)  # Write the transcription to the file
+
+    return output_file_path
+
+
+def get_all_file_paths(directory: str) -> List[str]:
+    """Retrieve all file paths from the specified directory."""
+    return [os.path.join(directory, file) for file in os.listdir(directory) if os.path.isfile(os.path.join(directory, file))]

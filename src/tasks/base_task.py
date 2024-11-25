@@ -31,4 +31,6 @@ class BaseTask(ABC):
         logger.info(f"Fetched data: {data}")
         result = self.process(data)
         logger.info(f"Sending answer: {result}")
-        return self.client.send_answer(result) 
+        response = self.client.send_answer(result) 
+        logger.info(f"AI devs Centrala response: {response}")
+        return response

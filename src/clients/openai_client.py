@@ -35,12 +35,13 @@ class OpenAIClient:
         )
         return response.choices[0].message.content
     
-    def answer_question(self, question: str, model: str = "gpt-4o-mini", system_message: str = "Respond only if you know the answer. Otherwise, say 'I don't know'.") -> str:
+    def answer_question(self, question: str, model: str = "gpt-4o-mini", system_message: str = "", response_format: str = "text") -> str:
         response = self.client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": question}
-            ]
+            ],
+            response_format={"type": response_format}
         )
         return response.choices[0].message.content
