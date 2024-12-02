@@ -38,7 +38,7 @@ def process_audio_transcription(audio_file_path: str, chunk_duration: int = 200,
     with open(output_file_path, 'w') as output_file:  # Open the file in write mode
         output_file.write(transcription)  # Write the transcription to the file
 
-    return output_file_path
+    return transcription
 
 
 def get_all_file_paths(directory: str) -> List[str]:

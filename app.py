@@ -5,7 +5,10 @@ from src.tasks.week1.day1_antycaptcha import AntyCaptcha
 from src.tasks.week1.day2_creature_authorization import CreatureAuthorization
 from src.tasks.week1.day3_calibration import Calibration
 from src.tasks.week1.day4_censure import Censure
-from src.tasks.week2.mp3 import Mp3
+from src.tasks.week2.day1_mp3 import Mp3
+from src.tasks.week2.day3_robot_id import RobotId
+from src.tasks.week2.day4_categories import Category
+from src.tasks.week2.day5.day5_multimodal import MultimodalTask
 
 def main():
     # process_audio_transcription(os.path.expanduser("")) #e.g."~/Desktop/test.mp3"
@@ -18,8 +21,16 @@ def main():
     # censure = Censure()
     # censure.run()
 
-    mp3 = Mp3()
-    mp3.run()
+    # mp3 = Mp3()
+    # mp3.run()
 
+    # robot_id = RobotId()
+    # robot_id.run()
+
+    # category = Category()
+    # category.run()
+
+    multimodal = MultimodalTask()
+    multimodal.run()
 if __name__ == "__main__":
     main() 
