@@ -35,9 +35,10 @@ class OpenAIClient:
         )
         return response.choices[0].message.content
     
-    def answer_question(self, question: str, model: str = "gpt-4o-mini", system_message: str = "", response_format: str = "text") -> str:
+    def answer_question(self, question: str, model: str = "gpt-4o", system_message: str = "", response_format: str = "text", temperature: float = 1) -> str:
         response = self.client.chat.completions.create(
             model=model,
+            temperature=temperature,
             messages=[
                 {"role": "system", "content": system_message},
                 {"role": "user", "content": question}
@@ -88,3 +89,4 @@ class OpenAIClient:
         )
         
         return response.choices[0].message.content
+    
