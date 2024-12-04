@@ -9,6 +9,8 @@ from src.tasks.week2.day1_mp3 import Mp3
 from src.tasks.week2.day3_robot_id import RobotId
 from src.tasks.week2.day4_categories import Category
 from src.tasks.week2.day5.day5_multimodal import MultimodalTask
+from src.tasks.week3.S03E01_documents import Documents
+from src.tasks.week3.S03E02_embedding.S03E02_embedding import EmbeddingTask
 
 def main():
     # process_audio_transcription(os.path.expanduser("")) #e.g."~/Desktop/test.mp3"
@@ -30,7 +32,14 @@ def main():
     # category = Category()
     # category.run()
 
-    multimodal = MultimodalTask()
-    multimodal.run()
+    # multimodal = MultimodalTask()
+    # multimodal.run()
+
+    # documents = Documents()
+    # documents.run()
+
+    embedding = EmbeddingTask()
+    embedding.run()
+
 if __name__ == "__main__":
     main() 

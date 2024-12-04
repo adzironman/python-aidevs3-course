@@ -9,3 +9,7 @@ python-dotenv==1.0.0
 requests==2.32.3
 soupsieve==2.6
 urllib3==2.2.3
+tiktoken==0.8.0
+langfuse==2.55.0
+qdrant-client==1.12.1
+fastembed==0.4.2

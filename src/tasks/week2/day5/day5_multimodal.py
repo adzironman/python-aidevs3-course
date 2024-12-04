@@ -6,6 +6,10 @@ from src.tasks.base_task import BaseTask
 
 
 class MultimodalTask(BaseTask):
+    def __init__(self):
+        super().__init__()
+        self.context = None
+        self.questions = None
 
     def _create_client(self) -> PoligonAPIClient:
         return PoligonAPIClient(
