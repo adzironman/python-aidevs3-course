@@ -1,7 +1,7 @@
 from typing import List, Dict, Optional
 import json
 from src.clients.openai_client import OpenAIClient
-from tasks.base_task import BaseTask
+from src.tasks.base_task import BaseTask
 from src.tasks.week3.S03E03.generate_query_prompt import get_system_prompt
 
 

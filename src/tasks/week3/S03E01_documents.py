@@ -5,7 +5,7 @@ from typing import Any, Dict
 from dotenv import load_dotenv
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
-from tasks.base_task import BaseTask
+from src.tasks.base_task import BaseTask
 from src.utils.http_util import HttpUtil, ResponseType
 from src.utils.zip_util import ZipUtil
 

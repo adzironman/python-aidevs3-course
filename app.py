@@ -3,8 +3,8 @@ from src.services.audio_files_service import process_audio_transcription
 import os
 import sys
 
-from tasks.base_task_poligon import BaseTaskPoligon
-from tasks.base_task import BaseTask
+from src.tasks.base_task_poligon import BaseTaskPoligon
+from src.tasks.base_task import BaseTask
 from src.tasks.week1.day1_antycaptcha import AntyCaptcha
 from src.tasks.week1.day2_creature_authorization import CreatureAuthorization
 from src.tasks.week1.day3_calibration import Calibration

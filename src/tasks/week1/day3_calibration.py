@@ -3,7 +3,7 @@ from typing import Any, List, Dict
 
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
-from tasks.base_task import BaseTask
+from src.tasks.base_task import BaseTask
 
 class Calibration(BaseTask):
     def __init__(self):

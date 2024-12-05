@@ -9,7 +9,7 @@ from qdrant_client.models import Distance, VectorParams, PointStruct
 from src.clients.jina_embedding_client import JinaEmbeddingClient
 from src.clients.openai_client import OpenAIClient
 from src.services.audio_files_service import get_all_file_paths
-from tasks.base_task import BaseTask
+from src.tasks.base_task import BaseTask
 
 
 class EmbeddingTask(BaseTask):

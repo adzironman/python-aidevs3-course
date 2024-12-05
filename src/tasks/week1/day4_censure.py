@@ -2,7 +2,7 @@ import os
 from typing import Any
 from openai import OpenAI
 import requests
-from tasks.base_task import BaseTask
+from src.tasks.base_task import BaseTask
 
 
 class   Censure(BaseTask):

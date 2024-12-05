@@ -2,6 +2,49 @@ import os
 import logging
 from datetime import datetime
 import sys
+from colorama import Fore, Style, init
+
+# Initialize colorama
+init()
+
+class CustomFormatter(logging.Formatter):
+    # Define color schemes for different logging levels
+    COLORS = {
+        'DEBUG': Fore.BLUE,
+        'INFO': Fore.GREEN,
+        'WARNING': Fore.YELLOW,
+        'ERROR': Fore.RED,
+        'CRITICAL': Fore.RED + Style.BRIGHT,
+    }
+
+    # Color for the logger name
+    NAME_COLOR = Fore.CYAN
+
+    EMOJIS = {
+        "INFO": "ℹ️",
+        "WARNING": "⚠️",
+        "ERROR": "❌",
+        "DEBUG": "🐛",
+        "CRITICAL": "💀"
+    }
+
+    def format(self, record):
+        # Get the color for this log level
+        color = self.COLORS.get(record.levelname, '')
+        
+        # Add emoji to the record
+        record.emoji = self.EMOJIS.get(record.levelname, "")
+        
+        # Color the name
+        record.name = f"{self.NAME_COLOR}{record.name}{Style.RESET_ALL}"
+        
+        # Color the levelname and message
+        if color:
+            record.levelname = f"{color}{record.levelname}{Style.RESET_ALL}"
+            record.msg = f"{color}{record.msg}{Style.RESET_ALL}"
+        
+        return super().format(record)
+
 
 def setup_logger(name: str) -> logging.Logger:
     """
@@ -13,23 +56,10 @@ def setup_logger(name: str) -> logging.Logger:
     Returns:
         logging.Logger: Configured logger
     """
-    # Create the logs directory if it doesn't exist
-    log_directory = '../logs'  # Adjust this path as necessary
-    os.makedirs(log_directory, exist_ok=True)
-
-    # Log filename with the current date
-    log_filename = os.path.join(log_directory, f"api_{datetime.now().strftime('%Y%m%d')}.log")
-
-    # Configure log formatting
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-    # File handler
-    file_handler = logging.FileHandler(log_filename, encoding='utf-8')
-    file_handler.setFormatter(formatter)
 
     # Console handler
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setFormatter(formatter)
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(CustomFormatter(fmt="[%(name)s] - %(levelname)s: %(message)s %(emoji)s"))
 
     # Configure logger
     logger = logging.getLogger(name)
@@ -37,7 +67,7 @@ def setup_logger(name: str) -> logging.Logger:
 
     # Remove existing handlers (if any)
     if not logger.handlers:
-        logger.addHandler(file_handler)
         logger.addHandler(console_handler)
 
     return logger
+

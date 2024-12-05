@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import logging
+
 from venv import logger
 from src.clients.centrala_api_client import CentralaAPIClient
 from typing import Any
@@ -24,7 +24,7 @@ class BaseTask(ABC):
 
     def run(self):
         result = self.process()
-        logger.info(f"Sending answer: {result}")
+        self.logger.info(f"Sending answer: {result}")
         response = self.client.send_answer(result) 
-        logger.info(f"AI devs Centrala response: {response}")
+        self.logger.info(f"AI devs Centrala response: {response}")
         return response

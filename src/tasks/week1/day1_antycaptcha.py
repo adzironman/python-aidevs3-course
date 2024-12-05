@@ -1,5 +1,5 @@
 from src.clients.openai_client import OpenAIClient
-from tasks.base_task import BaseTask
+from src.tasks.base_task import BaseTask
 from bs4 import BeautifulSoup
 import requests  # Make sure to import requests for fetching HTML
 
