@@ -10,6 +10,9 @@ class CreatureAuthorization():
     conversation_url="https://xyz.ag3nts.org/verify"
     msg_id = "1"
 
+    def __init__(self):
+        super().__init__(task_name="creature")
+
     def process(self):
         xyz_reponse = self.xyz_conversation()
         msg_id = xyz_reponse["msgID"]

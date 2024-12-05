@@ -1,15 +1,13 @@
 from src.clients.openai_client import OpenAIClient
-from src.tasks.base_task import BaseTask
-from src.clients.poligon_api_client import PoligonAPIClient
+from tasks.base_task import BaseTask
 from bs4 import BeautifulSoup
 import requests  # Make sure to import requests for fetching HTML
 
 
 class AntyCaptcha(BaseTask):
-    def _create_client(self) -> PoligonAPIClient:
-        return PoligonAPIClient(
-            task_name="ANTYCAPTCHA"
-        )
+    def __init__(self):
+        super().__init__(task_name="ANTYCAPTCHA")
+
     
 
     def process(self, data):

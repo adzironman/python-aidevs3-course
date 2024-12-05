@@ -3,9 +3,9 @@ from typing import Any
 from src.clients.openai_client import OpenAIClient
 from src.services.audio_files_service import get_all_file_paths, process_audio_transcription
 from src.tasks.week2.mp3_prompt import get_prompt
-from src.tasks.base_task_v2 import BaseTaskV2
+from tasks.base_task import BaseTask
 
-class Mp3(BaseTaskV2):
+class Mp3(BaseTask):
     def __init__(self):
         super().__init__(task_name="mp3")
 

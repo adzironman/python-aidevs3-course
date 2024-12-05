@@ -1,11 +1,11 @@
 from typing import List, Dict, Optional
 import json
 from src.clients.openai_client import OpenAIClient
-from src.tasks.base_task_v2 import BaseTaskV2
+from tasks.base_task import BaseTask
 from src.tasks.week3.S03E03.generate_query_prompt import get_system_prompt
 
 
-class Database(BaseTaskV2):
+class Database(BaseTask):
     def __init__(self) -> None:
         super().__init__(task_name="database")
         self.ai_client = OpenAIClient()

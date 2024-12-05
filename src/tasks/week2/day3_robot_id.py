@@ -3,11 +3,11 @@ import os
 import requests
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task_v2 import BaseTaskV2
+from tasks.base_task import BaseTask
 
 
 
-class RobotId(BaseTaskV2):
+class RobotId(BaseTask):
     def __init__(self):
         super().__init__(task_name="robotid")
 

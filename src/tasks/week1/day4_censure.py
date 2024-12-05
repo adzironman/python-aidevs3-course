@@ -2,16 +2,12 @@ import os
 from typing import Any
 from openai import OpenAI
 import requests
-from src.clients.openai_client import OpenAIClient
-from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task import BaseTask
+from tasks.base_task import BaseTask
 
 
-class Censure(BaseTask):
-    def _create_client(self) -> PoligonAPIClient:
-        return PoligonAPIClient(
-            task_name="CENZURA"
-        )
+class   Censure(BaseTask):
+    def __init__(self):
+        super().__init__(task_name="CENZURA")
     
     system_prompt = """
         <context>Twoim zadaniem jest zacenzurowanie tekstu. Kazdy osobisty detal zamieniusz na CENZURA.</context>

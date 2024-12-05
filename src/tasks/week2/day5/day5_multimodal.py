@@ -2,10 +2,10 @@ import os
 import pathlib
 import requests
 from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task_v2 import BaseTaskV2
+from tasks.base_task import BaseTask
 
 
-class MultimodalTask(BaseTaskV2):
+class MultimodalTask(BaseTask):
     def __init__(self):
         super().__init__(task_name="multimodal")
         self.context = None

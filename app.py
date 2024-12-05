@@ -3,8 +3,8 @@ from src.services.audio_files_service import process_audio_transcription
 import os
 import sys
 
-from src.tasks.base_task import BaseTask
-from src.tasks.base_task_v2 import BaseTaskV2
+from tasks.base_task_poligon import BaseTaskPoligon
+from tasks.base_task import BaseTask
 from src.tasks.week1.day1_antycaptcha import AntyCaptcha
 from src.tasks.week1.day2_creature_authorization import CreatureAuthorization
 from src.tasks.week1.day3_calibration import Calibration
@@ -18,7 +18,7 @@ from src.tasks.week3.S03E02_embedding.S03E02_embedding import EmbeddingTask
 from src.tasks.week3.S03E03.S03E03_database import Database
 
 # Map task names to their corresponding classes
-TASK_MAP: Dict[str, Type[BaseTask | BaseTaskV2]] = {
+TASK_MAP: Dict[str, Type[BaseTaskPoligon | BaseTask]] = {
     "audio": process_audio_transcription,  # Special case
     "antycaptcha": AntyCaptcha,
     "creature": CreatureAuthorization,

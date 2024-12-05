@@ -3,11 +3,11 @@ import os
 from src.tasks.week2.categoization_text_prompt import get_prompt
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task_v2 import BaseTaskV2
+from tasks.base_task import BaseTask
 from src.services.audio_files_service import get_all_file_paths, process_audio_transcription
 
 
-class Category(BaseTaskV2):
+class Category(BaseTask):
     def __init__(self) -> None:
         self.people_related_files: list[str] = []
         self.hardware_related_files: list[str] = []

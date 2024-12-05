@@ -3,13 +3,11 @@ from typing import Any, List, Dict
 
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task import BaseTask
+from tasks.base_task import BaseTask
 
 class Calibration(BaseTask):
-    def _create_client(self) -> PoligonAPIClient:
-        return PoligonAPIClient(
-            task_name="JSON"
-        )
+    def __init__(self):
+        super().__init__(task_name="JSON")
     
     whole_data: List[Dict[str, Any]] = []
 
