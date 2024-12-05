@@ -4,25 +4,20 @@ import os
 from src.tasks.week2.categoization_text_prompt import get_prompt
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task import BaseTask
+from src.tasks.base_task_v2 import BaseTaskV2
 from src.services.audio_files_service import get_all_file_paths, process_audio_transcription
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class Category(BaseTask):
+class Category(BaseTaskV2):
     def __init__(self) -> None:
         self.people_related_files: list[str] = []
         self.hardware_related_files: list[str] = []
-        super().__init__()
-        
-    def _create_client(self) -> PoligonAPIClient:
-        return PoligonAPIClient(
-            task_name="kategorie"
-        )
+        super().__init__(task_name="kategorie")
     
     def fetch_data(self) -> tuple[list[str], list[str], list[str]]:
-        all_files_paths = get_all_file_paths(os.path.expanduser("~/Desktop/pliki_z_fabryki"))
+        all_files_paths = get_all_file_paths(os.path.expanduser("~/Desktop/dev_materials/ai_devs3/pliki_z_fabryki"))
         audio_files_paths = [path for path in all_files_paths if path.endswith('.mp3')]
         txt_files_paths = [path for path in all_files_paths if path.endswith('.txt')]
         png_files_paths = [path for path in all_files_paths if path.endswith('.png')]
@@ -70,7 +65,8 @@ class Category(BaseTask):
             logger.info(f"Hardware related file: {file_name}")
             self.hardware_related_files.append(file_name)
 
-    def process(self, data: tuple[list[str], list[str], list[str]]) -> dict[str, list[str]]:
+    def process(self) -> dict[str, list[str]]:
+        data = self.fetch_data()
         # self.process_audio_files(data[0])
         # self.process_txt_files(data[1])
         # self.process_png_files(data[2])
