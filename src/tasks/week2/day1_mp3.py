@@ -4,7 +4,7 @@ from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
 from src.tasks.base_task import BaseTask
 from src.services.audio_files_service import get_all_file_paths, process_audio_transcription
-from src.prompts.mp3_prompt import get_prompt
+from src.tasks.week2.mp3_prompt import get_prompt
 
 class Mp3(BaseTask):
     def _create_client(self) -> PoligonAPIClient:

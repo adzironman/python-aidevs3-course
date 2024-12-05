@@ -23,3 +23,15 @@ class CentralaAPIClient:
         headers = {"Content-Type": "application/json"}
         response = requests.post(self.url, headers=headers, json=payload)
         return response.json()
+
+
+    def get_database_query(self, query):
+        self.url = urljoin(self.base_url, "/apidb")
+        payload = {
+            "task": self.task_name,
+            "apikey": self.api_key,
+            "query": query
+        }
+        headers = {"Content-Type": "application/json"}
+        response = requests.post(self.url, headers=headers, json=payload)
+        return response.json()

@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-from src.prompts.categories_task.categoization_text_prompt import get_prompt
+from src.tasks.week2.categoization_text_prompt import get_prompt
 from src.clients.openai_client import OpenAIClient
 from src.clients.poligon_api_client import PoligonAPIClient
 from src.tasks.base_task import BaseTask
