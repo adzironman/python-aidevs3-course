@@ -1,23 +1,22 @@
 import os
 from typing import Any
 from src.clients.openai_client import OpenAIClient
-from src.clients.poligon_api_client import PoligonAPIClient
-from src.tasks.base_task import BaseTask
 from src.services.audio_files_service import get_all_file_paths, process_audio_transcription
 from src.tasks.week2.mp3_prompt import get_prompt
+from src.tasks.base_task_v2 import BaseTaskV2
 
-class Mp3(BaseTask):
-    def _create_client(self) -> PoligonAPIClient:
-        return PoligonAPIClient(
-            task_name="mp3"
-        )
+class Mp3(BaseTaskV2):
+    def __init__(self):
+        super().__init__(task_name="mp3")
+
     
     def fetch_data(self) -> Any:
         audio_files_paths = get_all_file_paths(os.path.expanduser("~/Desktop/audio"))
         audio_files_paths = [path for path in audio_files_paths if path.endswith('.m4a')]
         return audio_files_paths
 
-    def process(self, data: Any) -> Any:
+    def process(self) -> Any:
+        data = self.fetch_data()
         transcription_files_paths = []
         # for audio_file_path in data:
         #     transcription_file_path = process_audio_transcription(audio_file_path, chunk_duration=100, output_file_name=f"{audio_file_path.split('.')[0]}.txt")

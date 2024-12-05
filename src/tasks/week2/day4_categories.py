@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 from src.tasks.week2.categoization_text_prompt import get_prompt
 from src.clients.openai_client import OpenAIClient
@@ -7,8 +6,6 @@ from src.clients.poligon_api_client import PoligonAPIClient
 from src.tasks.base_task_v2 import BaseTaskV2
 from src.services.audio_files_service import get_all_file_paths, process_audio_transcription
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 class Category(BaseTaskV2):
     def __init__(self) -> None:
@@ -25,7 +22,8 @@ class Category(BaseTaskV2):
         return (audio_files_paths, txt_files_paths, png_files_paths)
 
     def process_audio_files(self, audio_files_paths: list[str]) -> None:
-        logger.info(f"Processing {len(audio_files_paths)} audio files")
+
+        self.logger.info(f"Processing {len(audio_files_paths)} audio files")
         for audio_file_path in audio_files_paths:
             transcription = process_audio_transcription(audio_file_path, chunk_duration=100, output_file_name=f"{audio_file_path.split('/')[-1].split('.')[0]}.txt")
             category = self._get_category(transcription)
@@ -33,7 +31,7 @@ class Category(BaseTaskV2):
 
 
     def process_txt_files(self, txt_files_paths: list[str]) -> None:
-        logger.info(f"Processing {len(txt_files_paths)} txt files")
+        self.logger.info(f"Processing {len(txt_files_paths)} txt files")
         for txt_file_path in txt_files_paths:
             with open(txt_file_path, "r") as file:
                 transcription = file.read()
@@ -42,7 +40,7 @@ class Category(BaseTaskV2):
 
     def process_png_files(self, png_files_paths: list[str]) -> None:
         openai_client = OpenAIClient()
-        logger.info(f"Processing {len(png_files_paths)} png files")
+        self.logger.info(f"Processing {len(png_files_paths)} png files")
         for png_file_path in png_files_paths:
             text = openai_client.read_text_from_image(png_file_path)
             category = self._get_category(text)
@@ -53,16 +51,16 @@ class Category(BaseTaskV2):
         openai_client = OpenAIClient()
         system_prompt = get_prompt()
         answer = openai_client.answer_question(transcription, system_message=system_prompt, response_format="json_object")
-        logger.info(f"Answer: {answer}")
+        self.logger.info(f"Answer: {answer}")
         return json.loads(answer)["category"]
     
     def _save_category(self, category: str, file_path: str) -> None:
         file_name = file_path.split('/')[-1]
         if category == "PEOPLE":
-            logger.info(f"People related file: {file_name}")
+            self.logger.info(f"People related file: {file_name}")
             self.people_related_files.append(file_name)
         elif category == "HARDWARE":
-            logger.info(f"Hardware related file: {file_name}")
+            self.logger.info(f"Hardware related file: {file_name}")
             self.hardware_related_files.append(file_name)
 
     def process(self) -> dict[str, list[str]]:
@@ -70,8 +68,8 @@ class Category(BaseTaskV2):
         # self.process_audio_files(data[0])
         # self.process_txt_files(data[1])
         # self.process_png_files(data[2])
-        logger.info(f"People related files: {self.people_related_files}")
-        logger.info(f"Hardware related files: {self.hardware_related_files}")  
+        self.logger.info(f"People related files: {self.people_related_files}")
+        self.logger.info(f"Hardware related files: {self.hardware_related_files}")  
 
         return {
 
