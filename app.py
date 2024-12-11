@@ -18,6 +18,7 @@ from src.tasks.week3.S03E02_embedding.S03E02_embedding import EmbeddingTask
 from src.tasks.week3.S03E03.S03E03_database import Database
 from src.tasks.week3.S03E04_loop import Lopp
 from src.tasks.week3.S03E05.S03E05_graph_db import GraphDbTask
+from src.tasks.week4.S04E01_photos import Photos
 # Map task names to their corresponding classes
 TASK_MAP: Dict[str, Type[BaseTaskPoligon | BaseTask]] = {
     "audio": process_audio_transcription,  # Special case
@@ -34,6 +35,7 @@ TASK_MAP: Dict[str, Type[BaseTaskPoligon | BaseTask]] = {
     "database": Database,
     "loop": Lopp,
     "graphdb": GraphDbTask,
+    "photos": Photos,
 }
 
 def run_task(task_name: str) -> None:
@@ -60,7 +62,7 @@ def run_task(task_name: str) -> None:
 
 def main():
     # Get task name from command line argument, default to "database"
-    task_to_run = sys.argv[1] if len(sys.argv) > 1 else "graphdb"
+    task_to_run = sys.argv[1] if len(sys.argv) > 1 else "photos"
     run_task(task_to_run)
 
 if __name__ == "__main__":
