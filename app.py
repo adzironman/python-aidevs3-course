@@ -16,7 +16,8 @@ from src.tasks.week2.day5.day5_multimodal import MultimodalTask
 from src.tasks.week3.S03E01_documents import Documents
 from src.tasks.week3.S03E02_embedding.S03E02_embedding import EmbeddingTask
 from src.tasks.week3.S03E03.S03E03_database import Database
-
+from src.tasks.week3.S03E04_loop import Lopp
+from src.tasks.week3.S03E05.S03E05_graph_db import GraphDbTask
 # Map task names to their corresponding classes
 TASK_MAP: Dict[str, Type[BaseTaskPoligon | BaseTask]] = {
     "audio": process_audio_transcription,  # Special case
@@ -31,6 +32,8 @@ TASK_MAP: Dict[str, Type[BaseTaskPoligon | BaseTask]] = {
     "documents": Documents,
     "embedding": EmbeddingTask,
     "database": Database,
+    "loop": Lopp,
+    "graphdb": GraphDbTask,
 }
 
 def run_task(task_name: str) -> None:
@@ -57,7 +60,7 @@ def run_task(task_name: str) -> None:
 
 def main():
     # Get task name from command line argument, default to "database"
-    task_to_run = sys.argv[1] if len(sys.argv) > 1 else "database"
+    task_to_run = sys.argv[1] if len(sys.argv) > 1 else "graphdb"
     run_task(task_to_run)
 
 if __name__ == "__main__":

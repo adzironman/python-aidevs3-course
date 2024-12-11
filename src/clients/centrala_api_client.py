@@ -25,10 +25,10 @@ class CentralaAPIClient:
         return response.json()
 
 
-    def get_database_query(self, query):
-        self.url = urljoin(self.base_url, "/apidb")
+    def get_database_query(self, query, task_name="database", endpoint="/apidb"):
+        self.url = urljoin(self.base_url, endpoint)
         payload = {
-            "task": self.task_name,
+            "task": task_name,
             "apikey": self.api_key,
             "query": query
         }

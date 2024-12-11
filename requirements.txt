@@ -14,3 +14,4 @@ langfuse==2.55.0
 qdrant-client==1.12.1
 fastembed==0.4.2
 colorama==0.4.6
+neo4j==5.26.0

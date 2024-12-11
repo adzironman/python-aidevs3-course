@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-from venv import logger
 from src.clients.centrala_api_client import CentralaAPIClient
 from typing import Any
 
